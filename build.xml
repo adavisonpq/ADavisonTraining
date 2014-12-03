@@ -1,0 +1,20 @@
+<project name="pqservices-example"
+         default="publish-local"
+         basedir="."
+         xmlns:ivy="antlib:org.apache.ivy.ant">
+
+	<property name="pq.srv.instance" value="nightly" />
+	<property file="${user.home}/ant-global.properties" />
+	<ivy:settings file="${pq.ivy.settings.file}" />
+
+	<echo message=" *************************************************************************" />
+	<echo message="  Reading Properties from file ${user.home}/ant-global.properties" />
+	<echo message="  Please see the following properties coming from this file: " />
+	<echoproperties prefix="pq" />
+	<echo message=" *************************************************************************" />
+
+	<import file="project.xml" optional="true" />
+	<import file="${pq.build.services.dir}/build-common.xml" />
+	<!--
+	-->
+</project>

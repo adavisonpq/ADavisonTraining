@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ivy-module version="2.0"  xmlns:m="http://ant.apache.org/ivy/maven">
+	<info
+		organisation="com.proquest"
+		module="pqservices-example"
+		status="integration">
+	</info>
+
+	<configurations>
+		<conf name="default" description="Both runtime dependencies and master artifact form this conf." extends="runtime,master"/>
+		<conf name="master" description="Contains only the artifact published by this module itself, with no transitive dependencies."/>
+		<conf name="build" description="Contains dependencies only required for compile/build time."/>
+		<conf name="runtime" description="Contains dependencies that are not neccessarily required for building, but are for execution."/>
+		<conf name="test" description="Dependencies not required for normal use of the application, and are only available for test compilation and execution." extends="runtime"/>
+		<conf name="optional" description="Contains all optional dependencies. (for server side use)"/>
+	</configurations>
+
+	<publications>
+		<artifact name="pqservices-example" type="jar" conf="build,master" ext="jar" />
+		<artifact name="pqservices-example" type="source" conf="build,master" ext="jar" />
+		<artifact name="pqservices-example" type="javadoc" conf="build,master" ext="jar" />
+	</publications>
+
+	<dependencies>
+
+		<dependency org="com.proquest" name="pqservices-codegen" rev="2.18.+" conf="build" />
+		<dependency org="com.proquest" name="pqservices-utility" rev="2.18.+" conf="build,runtime->default(*)">
+			<artifact name="pqservices-utility" type="nodep" m:classifier="nodep" ext="jar" />
+		</dependency>
+		
+		<dependency org="commons-pool" name="commons-pool" rev="1.4" conf="runtime->default(*)"/>
+		<dependency org="commons-io" name="commons-io" rev="1.3.1" conf="runtime->default(*)"/>
+		
+		<dependency org="junit" name="junit" rev="4.4" conf="test->default(*)"/>
+		<dependency org="org.easymock" name="easymock" rev="3.0" conf="test->default(*)"/>
+		<dependency org="emma" name="emma" rev="2.0.5312" conf="test->default(*)"/>
+	</dependencies>
+</ivy-module>
