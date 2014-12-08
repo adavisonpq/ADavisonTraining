@@ -6,6 +6,7 @@ import org.restlet.representation.Representation;
 import org.restlet.representation.Variant;
 import org.restlet.resource.ResourceException;
 
+import com.google.inject.Inject;
 import com.proquest.services.example.service.ExampleService;
 import com.proquest.services.example.util.ExampleAbstractResource;
 import com.proquest.services.example.xml.HelloMessage;
@@ -19,7 +20,8 @@ public class HelloWorldResource extends ExampleAbstractResource {
 	public HelloWorldResource() {
 		super();
 	}
-		
+	
+	@Inject
 	public HelloWorldResource(ExampleService exampleService) {
 		super(exampleService);
 	}

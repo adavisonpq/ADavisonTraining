@@ -12,8 +12,8 @@ import com.proquest.services.restlet.AbstractResource;
 import com.proquest.services.restlet.RestHttpResponse;
 import com.proquest.services.restlet.WadlSchema;
 import com.proquest.services.utilities.CastorMarshaller;
-import com.proquest.services.example.service.ExampleFactory;
 import com.proquest.services.example.service.ExampleService;
+import com.proquest.services.guice.injection.main.Bootstrap;
 
 public abstract class ExampleAbstractResource extends AbstractResource {
 
@@ -24,7 +24,7 @@ public abstract class ExampleAbstractResource extends AbstractResource {
 	protected String cacheTimeout;
    
 	public ExampleAbstractResource() {
-		this(new ExampleFactory().getService());
+		this(Bootstrap.getInstance(ExampleService.class));
 	}
 
 	public ExampleAbstractResource(ExampleService exampleService) {
