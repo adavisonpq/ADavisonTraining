@@ -7,12 +7,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.proquest.services.example.util.ExampleProperties;
 import com.proquest.services.example.xml.HelloMessage;
+import com.proquest.services.guice.injection.main.Bootstrap;
 
 public class ExampleServiceImpl implements ExampleService {
 
 	private static final Log LOG = LogFactory.getLog(ExampleServiceImpl.class);
-	
+
     private static final Map<String, String> hellos;
     static
     {
@@ -39,9 +41,10 @@ public class ExampleServiceImpl implements ExampleService {
 	public HelloMessage getHelloMessage(String language) {
 
 		HelloMessage msg = new HelloMessage();
-		
+		ExampleProperties props=Bootstrap.getInstance(ExampleProperties.class);
+
 		if (StringUtils.isEmpty(language)) {
-			language = "english";
+			language = props.getDefaultLanguage();
 		}
 		
 		LOG.debug(String.format("Request for hello message in %s language", language));

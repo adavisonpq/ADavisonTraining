@@ -4,13 +4,21 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.google.inject.Inject;
 import com.proquest.services.Defect;
 import com.proquest.services.utilities.ServiceUtils;
 
 public class ExampleProperties {
 
 	private static Properties properties;
+	
+	private static final String DEFAULT_LANGUAGE = "default.language";
 
+	public String getDefaultLanguage() {
+		return getStringProperty(DEFAULT_LANGUAGE,null);
+	}
+	
+	@Inject
 	private ExampleProperties() throws IOException {
 	}
 
