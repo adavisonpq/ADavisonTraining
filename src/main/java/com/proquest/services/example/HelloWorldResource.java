@@ -21,11 +21,6 @@ public class HelloWorldResource extends ExampleAbstractResource {
 		super();
 	}
 	
-	@Inject
-	public HelloWorldResource(ExampleService exampleService) {
-		super(exampleService);
-	}
-
 	@Override
 	protected GetHandler createGetHandler() {
 		return new GetHandler() {
@@ -34,7 +29,7 @@ public class HelloWorldResource extends ExampleAbstractResource {
 			public Representation represent(Variant variant) throws ResourceDoesNotExistException, ResourceException {
 				logger.debug("GET hello called");
 				String language = request.getLanguage();
-				HelloMessage hello = exampleService.getHelloMessage(language);
+				HelloMessage hello = exampleService.get().getHelloMessage(language);
 				return response.respondSuccess(hello);
 			}
 
