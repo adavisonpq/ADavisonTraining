@@ -4,9 +4,7 @@ import java.io.IOException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.restlet.data.Parameter;
 import org.restlet.representation.Representation;
-import org.restlet.util.Series;
 
 import com.proquest.services.restlet.AbstractResource;
 import com.proquest.services.restlet.RestHttpResponse;
@@ -32,7 +30,6 @@ public abstract class ExampleAbstractResource extends AbstractResource {
 		this.exampleService = exampleService;
 	}
 
-	@SuppressWarnings("unchecked")
 	protected void configureHandler(Object handler, Representation entity) {
 		try {
 			cacheTimeout = ExampleProperties.getExampleProperties().getProperty(ExampleConstants.HTTP_CACHE_MAX_AGE);
@@ -41,10 +38,10 @@ public abstract class ExampleAbstractResource extends AbstractResource {
 			logger.warn("We are using 'max-age=120', 'max-age' property needs to be added to the example.properties file", e);
 		}
 
-		Series<Parameter> headers = (Series<Parameter>) getRequest().getAttributes().get("org.restlet.http.headers");
-		String mediaType = headers.getFirstValue("Accept", true);
 		request = new ExampleHttpRequest(getRequest(), getQuery(), entity);
-		response = new RestHttpResponse(getResponse(), mediaType, new CastorMarshaller(), request, WadlSchema.getInstance().getTransformer());
+		response = new RestHttpResponse(getResponse(), getRequest().getClientInfo().getAcceptedMediaTypes(), new CastorMarshaller(), 
+				request, WadlSchema.getInstance().getTransformer(), WadlSchema.getInstance().getAcceptedVariantsList());
+						
 	}
 
 }

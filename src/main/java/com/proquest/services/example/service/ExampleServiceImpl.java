@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.google.inject.Inject;
 import com.proquest.services.example.util.ExampleProperties;
 import com.proquest.services.example.xml.HelloMessage;
 import com.proquest.services.guice.injection.binding.TimingLog;
@@ -15,7 +16,8 @@ import com.proquest.services.guice.injection.main.Bootstrap;
 public class ExampleServiceImpl implements ExampleService {
 
 	private static final Log LOG = LogFactory.getLog(ExampleServiceImpl.class);
-
+	private ExampleProperties props;
+	
     private static final Map<String, String> hellos;
     static
     {
@@ -34,17 +36,17 @@ public class ExampleServiceImpl implements ExampleService {
         hellos.put("spanish", "Hola mundo");
     }	
 	
-	public ExampleServiceImpl() {
+    @Inject
+	public ExampleServiceImpl(ExampleProperties props) {
 		super();
+		this.props = props;
 	}
 
 	@Override
 	@TimingLog("HELLO-MESSAGE")
 	public HelloMessage getHelloMessage(String language) {
 
-
 		HelloMessage msg = new HelloMessage();
-		ExampleProperties props=Bootstrap.getInstance(ExampleProperties.class);
 
 		if (StringUtils.isEmpty(language)) {
 			language = props.getDefaultLanguage();
