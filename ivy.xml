@@ -28,6 +28,10 @@
 			<artifact name="pqservices-utility" type="nodep" m:classifier="nodep" ext="jar" />
 		</dependency>
 		
+		<dependency org="com.proquest" name="pqservices-testutility" rev="2.18.+" conf="test->default(*)">
+			<artifact name="pqservices-testutility" m:classifier="nodep" type="nodep" ext="jar" />
+		</dependency>
+		
 		<dependency org="commons-pool" name="commons-pool" rev="1.4" conf="runtime->default(*)"/>
 		<dependency org="commons-io" name="commons-io" rev="1.3.1" conf="runtime->default(*)"/>
 		

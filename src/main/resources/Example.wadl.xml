@@ -14,7 +14,7 @@
 	<resources base="http://localhost:8185">
 
 		<!--  Hello World  -->		
-		<resource id="com.proquest.services.example.HelloWorldResource" path="/hello">
+		<resource id="com.proquest.services.example.HelloWorldResource" path="/example/hello">
 			<doc>Say Hello World.</doc>
 			<method name="GET">
 				<doc>Says Hello World!</doc>
