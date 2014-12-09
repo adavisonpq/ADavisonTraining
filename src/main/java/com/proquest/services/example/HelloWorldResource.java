@@ -6,6 +6,7 @@ import org.restlet.representation.Representation;
 import org.restlet.representation.Variant;
 import org.restlet.resource.ResourceException;
 
+import com.google.inject.Inject;
 import com.proquest.services.example.service.ExampleService;
 import com.proquest.services.example.util.ExampleAbstractResource;
 import com.proquest.services.example.xml.HelloMessage;
@@ -19,11 +20,7 @@ public class HelloWorldResource extends ExampleAbstractResource {
 	public HelloWorldResource() {
 		super();
 	}
-		
-	public HelloWorldResource(ExampleService exampleService) {
-		super(exampleService);
-	}
-
+	
 	@Override
 	protected GetHandler createGetHandler() {
 		return new GetHandler() {
@@ -32,7 +29,7 @@ public class HelloWorldResource extends ExampleAbstractResource {
 			public Representation represent(Variant variant) throws ResourceDoesNotExistException, ResourceException {
 				logger.debug("GET hello called");
 				String language = request.getLanguage();
-				HelloMessage hello = exampleService.getHelloMessage(language);
+				HelloMessage hello = exampleService.get().getHelloMessage(language);
 				return response.respondSuccess(hello);
 			}
 
