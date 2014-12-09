@@ -11,15 +11,22 @@ import org.restlet.data.Method;
 import org.restlet.data.Status;
 import org.restlet.ext.wadl.WadlComponent;
 
+import com.google.inject.AbstractModule;
+import com.google.inject.Scopes;
 import com.google.inject.Stage;
+import com.proquest.services.example.HelloWorldResourceTest.HelloWorldResourceTestModule;
+import com.proquest.services.example.util.ExampleProperties;
+import com.proquest.services.example.util.MockExampleProperties;
 import com.proquest.services.example.xml.HelloMessage;
 import com.proquest.services.testutility.injection.runner.GuiceRunner;
+import com.proquest.services.testutility.injection.runner.GuiceRunner.GuiceModules;
 import com.proquest.services.testutility.injection.runner.GuiceRunner.GuiceStage;
 import com.proquest.services.testutility.restlet.TestGuiceInitializer;
 import com.proquest.services.utilities.CastorMarshaller;
 
 @RunWith(GuiceRunner.class)
 @GuiceStage(Stage.DEVELOPMENT)
+@GuiceModules({HelloWorldResourceTestModule.class})
 public class HelloWorldResourceTest {
 	@Inject CastorMarshaller marshaller;
 	
@@ -39,5 +46,12 @@ public class HelloWorldResourceTest {
 		HelloMessage message=marshaller.unmarshall(xml, HelloMessage.class);
 		Assert.assertNotNull(message);
 		Assert.assertEquals("Hello world", message.getMessage());
+	}
+	
+	public static class HelloWorldResourceTestModule extends AbstractModule {
+		@Override
+		protected void configure() {
+			bind(ExampleProperties.class).to(MockExampleProperties.class).in(Scopes.SINGLETON);
+		}	
 	}
 }
