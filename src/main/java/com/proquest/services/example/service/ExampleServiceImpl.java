@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.proquest.services.example.util.ExampleProperties;
 import com.proquest.services.example.xml.HelloMessage;
+import com.proquest.services.guice.injection.binding.TimingLog;
 import com.proquest.services.guice.injection.main.Bootstrap;
 
 public class ExampleServiceImpl implements ExampleService {
@@ -38,7 +39,9 @@ public class ExampleServiceImpl implements ExampleService {
 	}
 
 	@Override
+	@TimingLog("HELLO-MESSAGE")
 	public HelloMessage getHelloMessage(String language) {
+
 
 		HelloMessage msg = new HelloMessage();
 		ExampleProperties props=Bootstrap.getInstance(ExampleProperties.class);
@@ -47,8 +50,7 @@ public class ExampleServiceImpl implements ExampleService {
 			language = props.getDefaultLanguage();
 		}
 		
-		LOG.debug(String.format("Request for hello message in %s language", language));
-		System.out.println(String.format("Request for hello message in %s language", language));
+		LOG.debug(String.format("GET request for hello message in %s language", language));
 		
 		msg.setLanguage(language);
 
