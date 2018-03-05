@@ -23,12 +23,12 @@
 
 	<dependencies>
 
-		<dependency org="com.proquest" name="pqservices-codegen" rev="2.37.+" conf="build" />
-		<dependency org="com.proquest" name="pqservices-utility" rev="2.37.+" conf="build,runtime->default(*)">
+		<dependency org="com.proquest" name="pqservices-codegen" rev="2.38.+" conf="build" />
+		<dependency org="com.proquest" name="pqservices-utility" rev="2.38.+" conf="build,runtime->default(*)">
 			<artifact name="pqservices-utility" type="nodep" m:classifier="nodep" ext="jar" />
 		</dependency>
 		
-		<dependency org="com.proquest" name="pqservices-testutility" rev="2.37.+" conf="test->default(*)">
+		<dependency org="com.proquest" name="pqservices-testutility" rev="2.38.+" conf="test->default(*)">
 			<artifact name="pqservices-testutility" m:classifier="nodep" type="nodep" ext="jar" />
 		</dependency>
 		
