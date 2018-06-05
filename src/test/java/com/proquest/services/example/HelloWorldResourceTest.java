@@ -15,8 +15,8 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import com.google.inject.Stage;
 import com.proquest.services.example.HelloWorldResourceTest.HelloWorldResourceTestModule;
-import com.proquest.services.example.util.ExampleProperties;
-import com.proquest.services.example.util.MockExampleProperties;
+import com.proquest.services.example.util.ADavisonTrainingProperties;
+import com.proquest.services.example.util.MockADavisonTrainingProperties;
 import com.proquest.services.example.xml.HelloMessage;
 import com.proquest.services.testutility.injection.runner.GuiceRunner;
 import com.proquest.services.testutility.injection.runner.GuiceRunner.GuiceModules;
@@ -32,7 +32,7 @@ public class HelloWorldResourceTest {
 	
 	@Test
 	public void exampleHelloEnglish() throws Exception {
-		WadlComponent component=TestGuiceInitializer.getTestInstance().createInternalComponent("Example.wadl.xml");	
+		WadlComponent component=TestGuiceInitializer.getTestInstance().createInternalComponent("ADavisonTraining.wadl.xml");	
 		String uri = "riap://component/example/hello?lang=english";
 		Request request = new Request(Method.GET, uri);		
 		Response response = component.getContext().getClientDispatcher().handle(request);
@@ -51,7 +51,7 @@ public class HelloWorldResourceTest {
 	public static class HelloWorldResourceTestModule extends AbstractModule {
 		@Override
 		protected void configure() {
-			bind(ExampleProperties.class).to(MockExampleProperties.class).in(Scopes.SINGLETON);
+			bind(ADavisonTrainingProperties.class).to(MockADavisonTrainingProperties.class).in(Scopes.SINGLETON);
 		}	
 	}
 }

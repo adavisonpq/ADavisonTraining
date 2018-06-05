@@ -1,4 +1,4 @@
-<project name="pqservices-example"
+<project name="pqservices-adavisontraining"
          default="publish-local"
          basedir="."
          xmlns:ivy="antlib:org.apache.ivy.ant">

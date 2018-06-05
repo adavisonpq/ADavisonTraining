@@ -7,13 +7,13 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.ResourceException;
 
 import com.google.inject.Inject;
-import com.proquest.services.example.service.ExampleService;
-import com.proquest.services.example.util.ExampleAbstractResource;
+import com.proquest.services.example.service.ADavisonTrainingService;
+import com.proquest.services.example.util.ADavisonTrainingAbstractResource;
 import com.proquest.services.example.xml.HelloMessage;
 import com.proquest.services.exceptions.ResourceDoesNotExistException;
 import com.proquest.services.restlet.GetHandler;
 
-public class HelloWorldResource extends ExampleAbstractResource {
+public class HelloWorldResource extends ADavisonTrainingAbstractResource {
 
 	private static final Log logger = LogFactory.getLog( HelloWorldResource.class );
 		

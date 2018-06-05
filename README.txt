@@ -1,7 +1,7 @@
-Svcs-Example
+Svcs-ADavisonTraining
 ============
 
-Example service to provide a "stub" of code for starting new services based on the 
+ADavisonTraining service to provide a "stub" of code for starting new services based on the 
 enterprise service architecture.
 
 Notes:

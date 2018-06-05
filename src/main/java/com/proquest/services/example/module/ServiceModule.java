@@ -7,10 +7,10 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import com.google.inject.Singleton;
-import com.proquest.services.example.ExampleStatusReporter;
-import com.proquest.services.example.service.ExampleService;
-import com.proquest.services.example.service.ExampleServiceImpl;
-import com.proquest.services.example.util.ExampleProperties;
+import com.proquest.services.example.ADavisonTrainingStatusReporter;
+import com.proquest.services.example.service.ADavisonTrainingService;
+import com.proquest.services.example.service.ADavisonTrainingServiceImpl;
+import com.proquest.services.example.util.ADavisonTrainingProperties;
 import com.proquest.services.guice.injection.binding.Service;
 import com.proquest.services.guice.injection.binding.TimingLogScope;
 import com.proquest.services.log.ExtendedTimingMessage;
@@ -23,9 +23,9 @@ public class ServiceModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		bind(ExampleProperties.class).in(Scopes.SINGLETON);
-		bind(StatusReporter.class).to(ExampleStatusReporter.class);
-		bind(ExampleService.class).to(ExampleServiceImpl.class);
+		bind(ADavisonTrainingProperties.class).in(Scopes.SINGLETON);
+		bind(StatusReporter.class).to(ADavisonTrainingStatusReporter.class);
+		bind(ADavisonTrainingService.class).to(ADavisonTrainingServiceImpl.class);
 		bind(ITimingMessage.class).to(ExtendedTimingMessage.class).in(TimingLogScope.class);
 	}
 

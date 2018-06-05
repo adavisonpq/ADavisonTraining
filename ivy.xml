@@ -2,7 +2,7 @@
 <ivy-module version="2.0"  xmlns:m="http://ant.apache.org/ivy/maven">
 	<info
 		organisation="com.proquest"
-		module="pqservices-example"
+		module="pqservices-adavisontraining"
 		status="integration">
 	</info>
 
@@ -16,9 +16,9 @@
 	</configurations>
 
 	<publications>
-		<artifact name="pqservices-example" type="jar" conf="build,master" ext="jar" />
-		<artifact name="pqservices-example" type="source" conf="build,master" ext="jar" />
-		<artifact name="pqservices-example" type="javadoc" conf="build,master" ext="jar" />
+		<artifact name="pqservices-adavisontraining" type="jar" conf="build,master" ext="jar" />
+		<artifact name="pqservices-adavisontraining" type="source" conf="build,master" ext="jar" />
+		<artifact name="pqservices-adavisontraining" type="javadoc" conf="build,master" ext="jar" />
 	</publications>
 
 	<dependencies>
