@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<?xml-stylesheet type="text/xsl" href="http:///schemas.aa1.pqe/stylesheet/wadl_stylesheet.xsl"?>
+
+<application xmlns:html="http://www.w3.org/1999/xhtml"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xsi:schemaLocation="http://research.sun.com/wadl/2006/10 wadl.xsd"
+   xmlns="http://wadl.dev.java.net/2009/02">
+	<doc title="ADavisonTraining Service WADL file">The WADL file for the example service</doc>
+	<grammars>
+		<include href="ADavisonTraining_v1.xsd" />
+	</grammars>
+	<resources base="http://localhost:8185">
+
+		<!--  Hello World  -->		
+		<resource id="com.proquest.services.example.HelloWorldResource" path="/example/hello">
+			<doc>Say Hello World.</doc>
+			<method name="GET">
+				<doc>Says Hello World!</doc>
+				<request>
+					<param name="lang" style="query" type="xsi:string" required="false">
+						<doc>The language to say Hello World! in.</doc>
+					</param>
+				</request>
+				<response>
+					<representation status="200" mediaType="ADavisonTraining_v1" element="HelloMessage" />
+					<representation status="404" mediaType="text/plain">
+						<doc>The world does not get a Hello today.</doc>
+					</representation>
+				</response>
+			</method>
+		</resource>
+
+	</resources>
+</application>
