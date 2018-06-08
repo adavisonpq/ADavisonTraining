@@ -9,7 +9,7 @@
    xmlns="http://wadl.dev.java.net/2009/02">
 	<doc title="ADavisonTraining Service WADL file">The WADL file for the example service</doc>
 	<grammars>
-		<include href="ADavisonTraining_v1.xsd" />
+		<include href="ADavisonTraining_v2.xsd" />
 	</grammars>
 	<resources base="http://localhost:8185">
 
@@ -24,9 +24,55 @@
 					</param>
 				</request>
 				<response>
-					<representation status="200" mediaType="ADavisonTraining_v1" element="HelloMessage" />
+					<representation status="200" mediaType="ADavisonTraining_v2" element="HelloMessage" />
 					<representation status="404" mediaType="text/plain">
 						<doc>The world does not get a Hello today.</doc>
+					</representation>
+				</response>
+			</method>
+			<method name="POST">
+				<request>
+					<representation mediaType="ADavisonTraining_v2" element="HelloMessageRequest"/>
+				</request>
+				<response status="200">
+					<representation mediaType="ADavisonTraining_v2" element="HelloMessage"/>
+				</response>
+			</method>
+		</resource>
+		
+		<!--  Hello Worlds  -->		
+		<resource id="com.proquest.services.example.HelloWorldListResource" path="/example/hellos">
+			<doc>Say Hello World in every available language.</doc>
+			<method name="GET">
+				<doc>Says Hello World!</doc>
+				<request>
+					<param name="languageExclusions" style="query" type="xsi:string" required="false">
+						<doc>The languages not to say Hello World! in. Comma delimited.</doc>
+					</param>
+				</request>
+				<response>
+					<representation status="200" mediaType="ADavisonTraining_v2" element="HelloMessageList" />
+					<representation status="404" mediaType="text/plain">
+						<doc>The world does not get a Hello today.</doc>
+					</representation>
+				</response>
+			</method>
+		</resource>
+
+		<!--  Database Tests-->		
+		<resource id="com.proquest.services.example.DatabaseTestResource" path="/example/databaseTest">
+			<doc>Ask a database for stuff and see what it gives me, as a list of Strings.</doc>
+			<method name="GET">
+				<doc>Prints stuff from a database.</doc>
+				<!--<request>
+					<param name="languageExclusions" style="query" type="xsi:string" required="false">
+						<doc>The languages not to say Hello World! in. Comma delimited.</doc>
+					</param>
+				</request>-->
+				<response>
+					<representation status="200" mediaType="ADavisonTraining_v2" element="DatabaseResultList" />
+					<representation status="404" mediaType="text/plain">
+						<doc>The database didn't want to talk with us (was it something we said?).</doc>
 					</representation>
 				</response>
 			</method>

@@ -7,6 +7,7 @@ import org.restlet.data.Form;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
 
+import com.proquest.services.example.xml.HelloMessageRequest;
 import com.proquest.services.restlet.RestHttpRequest;
 import com.proquest.services.utilities.CastorMarshaller;
 
@@ -16,7 +17,8 @@ public class ADavisonTrainingHttpRequest extends RestHttpRequest {
 	
 	public static final String ENCODING = "utf-8";
 	public static final String LANGUAGE = "lang";
-
+	private static final String LANGUAGE_EXCLUSIONS = "languageExclusions";
+	
 	private String uri = "";
 	
 	public ADavisonTrainingHttpRequest(Request request, Form query, Representation entity) {
@@ -31,5 +33,12 @@ public class ADavisonTrainingHttpRequest extends RestHttpRequest {
 	public String getLanguage() throws ResourceException {
 		return getQueryParameter(LANGUAGE);
 	}
-		
+	
+	public String getLanguageExclusions() throws ResourceException {
+		return getQueryParameter(LANGUAGE_EXCLUSIONS);
+	}
+
+	public HelloMessageRequest getHelloMessageRequest() {
+		return unmarshal(HelloMessageRequest.class);
+	}
 }

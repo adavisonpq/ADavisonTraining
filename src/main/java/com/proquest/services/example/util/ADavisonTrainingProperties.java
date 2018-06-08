@@ -14,7 +14,7 @@ import org.apache.commons.logging.LogFactory;
 public class ADavisonTrainingProperties {
 
 	private Properties properties;
-	protected static String fileName = "example.properties";
+	protected static String fileName = "adavisontraining.properties";
 
 	private static final String DEFAULT_LANGUAGE = "default.language";
 

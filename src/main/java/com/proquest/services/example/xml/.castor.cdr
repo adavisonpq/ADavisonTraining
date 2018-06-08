@@ -1,2 +1,5 @@
-#Mon Dec 01 13:52:21 EST 2014
+#Fri Jun 08 11:46:14 EDT 2018
+com.proquest.services.example.xml.HelloMessageRequest=com.proquest.services.example.xml.descriptors.HelloMessageRequestDescriptor
+com.proquest.services.example.xml.HelloMessageList=com.proquest.services.example.xml.descriptors.HelloMessageListDescriptor
 com.proquest.services.example.xml.HelloMessage=com.proquest.services.example.xml.descriptors.HelloMessageDescriptor
+com.proquest.services.example.xml.DatabaseResultList=com.proquest.services.example.xml.descriptors.DatabaseResultListDescriptor

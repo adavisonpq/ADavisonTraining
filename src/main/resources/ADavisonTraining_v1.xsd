@@ -6,8 +6,31 @@
 	<xs:element name="HelloMessage">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="Language" type="xs:string" minOccurs="0"/>
 				<xs:element name="Message" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="HelloMessageRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Language" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="HelloMessageList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="HelloMessage" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="DatabaseResultList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Results" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

@@ -18,6 +18,7 @@ import com.proquest.services.example.HelloWorldResourceTest.HelloWorldResourceTe
 import com.proquest.services.example.util.ADavisonTrainingProperties;
 import com.proquest.services.example.util.MockADavisonTrainingProperties;
 import com.proquest.services.example.xml.HelloMessage;
+import com.proquest.services.example.xml.HelloMessageList;
 import com.proquest.services.testutility.injection.runner.GuiceRunner;
 import com.proquest.services.testutility.injection.runner.GuiceRunner.GuiceModules;
 import com.proquest.services.testutility.injection.runner.GuiceRunner.GuiceStage;
@@ -43,9 +44,27 @@ public class HelloWorldResourceTest {
 		String xml=response.getEntityAsText();
 		Assert.assertNotNull(xml);
 		
-		HelloMessage message=marshaller.unmarshall(xml, HelloMessage.class);
+		HelloMessage message = marshaller.unmarshall(xml, HelloMessage.class);
 		Assert.assertNotNull(message);
 		Assert.assertEquals("Hello world", message.getMessage());
+	}
+	
+	@Test
+	public void exampleHelloAll() throws Exception {
+		WadlComponent component=TestGuiceInitializer.getTestInstance().createInternalComponent("ADavisonTraining.wadl.xml");	
+		String uri = "riap://component/example/hellos?languageExclusions=english,german";
+		Request request = new Request(Method.GET, uri);		
+		Response response = component.getContext().getClientDispatcher().handle(request);
+		Status status=response.getStatus();
+		Assert.assertNotNull(status);
+		Assert.assertEquals(200, status.getCode());
+		
+		String xml=response.getEntityAsText();
+		Assert.assertNotNull(xml);
+		
+		HelloMessageList messages = marshaller.unmarshall(xml, HelloMessageList.class);
+		Assert.assertNotNull(messages);
+		Assert.assertEquals(messages.getHelloMessage().length, 10); //12 - 2
 	}
 	
 	public static class HelloWorldResourceTestModule extends AbstractModule {
