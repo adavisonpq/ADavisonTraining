@@ -1,0 +1,27 @@
+pluginManagement {
+	repositories {
+		maven {
+			url "${nexus_url_dev}/repository/maven-releases"
+		}
+		gradlePluginPortal()
+		ivy {
+			url 'ivy-repo'
+		}
+		mavenLocal()
+		/*flatDir {
+			dirs 'c:/cygwin64/home/ADavison/eclipse-workspace/repo'
+		}*/
+	}
+}
+
+/*
+
+Shouldn't be needed, but just in case:
+final Properties props = new Properties();
+props.load(new FileReader(System.getProperty("user.home") + "/.gradle/gradle.properties"));
+final String myRepoUrl = props.getProperty("myRepoUrl");
+
+ */
+  
+rootProject.name="ADavisonTraining"
+  

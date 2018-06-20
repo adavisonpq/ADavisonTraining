@@ -24,7 +24,7 @@ Class-Path: HdrHistogram-2.1.9.jar HikariCP-2.7.1.jar aopalliance-1.0.
  ker-2.2.1.jar org.restlet.ext.jetty-2.2.1.jar org.restlet.ext.slf4j-2
  .2.1.jar org.restlet.ext.wadl-2.2.1.jar org.restlet.ext.xml-2.2.1.jar
   postgresql-42.1.4.jar pqsearch-alert-objects-2.39.1.jar pqservices-g
- ossamer-2.39.1.jar pqservices-utility-2.39.6.jar reflections-0.9.9-RC
+ ossamer-2.39.2.jar pqservices-utility-2.39.7.jar reflections-0.9.9-RC
  1.jar slf4j-api-1.6.1.jar slf4j-log4j12-1.6.1.jar snakeyaml-1.17.jar 
  snappy-java-1.1.2.6.jar spymemcached-2.12.0.jar ucp-11.2.0.2.0.jar xm
  lRpcClient-xmlrpc100001.jar xmlRpcServer-xmlrpc100001.jar
@@ -34,5 +34,5 @@ Built-By: ADavison
 Git-Commit: Unspecified
 Implementation-Title: Continuous Integration Build
 Implementation-Vendor: ProQuest LLC
-Implementation-Version: 2.39.0 06/06/2018 11:23:05 AM
+Implementation-Version: 2.39.1 06/14/2018 03:48:30 PM
 

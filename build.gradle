@@ -1,0 +1,221 @@
+buildscript {
+	repositories {
+		/*ivy {
+			layout 'pattern', {
+				ivy '[organisation]/[module]/[type]s/ivy-[revision].xml'
+				artifact '[organisation]/[module]/[type]s/[artifact]-[revision].[ext]'
+			}
+			url "http://ivy.aa1.pqe/repository/shared/"
+		}*/
+		mavenLocal()
+		/*maven {
+			url "${nexus_url_dev}/repository/maven-public"
+		}*/
+		
+	}
+	
+	/*dependencies {
+		classpath 'com.proquest.CastorExecPlugin:com.proquest.CastorExecPlugin.gradle.plugin:1.0.3'
+	}*/
+}
+
+//apply plugin: 'java'
+plugins {
+	id 'java'
+	//id 'com.proquest.CastorExecPlugin' version '1.0.0-SNAPSHOT'
+	id 'com.proquest.CastorExecPlugin' version '1.0.3'
+	//id 'CastorExecPlugin' version '1.0.1'
+}
+
+task listrepos {
+	doLast {
+		println "Repositories:"
+		project.buildscript.repositories.each { println "Name: " + it.name + "; url: " + it.url }
+   }
+}
+
+//apply plugin: 'java'
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+javadoc.options.encoding = 'UTF-8'
+
+repositories {
+	/*ivy {
+		layout 'pattern', {
+			ivy '[organisation]/[module]/[type]s/ivy-[revision].xml'
+			artifact '[organisation]/[module]/[type]s/[artifact]-[revision].[ext]'
+		}
+		url "http://ivy.aa1.pqe/repository/shared/"
+	}*/
+	maven {
+		credentials {
+			username nexus_username_dev
+			password nexus_password_dev
+		}
+		url "${nexus_url_dev}/repository/maven-releases"
+	}
+	mavenCentral()
+}
+
+task runCastorLocal(type: com.proquest.CastorExecTask) {
+	xsdFile = "c:/cygwin64/home/ADavison/eclipse-workspace/Svcs-ADavisonTraining/src/main/resources/ADavisonTraining_v2.xsd"
+	packageName = "com.proquest.services.example.xml"
+	codegenOutputDir = project.getProperty('codegenOutputDir')
+}
+
+task printConfigs {
+	doLast {
+		println "Repositories:"
+		project.configurations.each { println "Name: " + it.name }
+   }
+}
+
+task printer {
+	doLast {
+		println "*************************"
+		println serviceName
+		println manifestMainClass
+		println serviceSchemaVersion
+		println serviceSchemaFile
+		println serviceSchemaPackage
+		println codegenOutputDir
+		println srvResourcesName
+		println "*************************"
+	}
+}
+
+
+/*buildscript {
+	repositories {
+		maven {
+			url uri('../repo')
+		}
+		mavenCentral()
+	}
+	dependencies {
+		classpath group: 'com.proquest', name: 'CastorExecPlugin',
+				  version: '1.0.0'
+	}
+}*/
+
+/*repositories {
+	mavenCentral()
+}*/
+
+/*configurations {
+	castor
+}
+
+dependencies {
+	castor 'org.codehaus.castor:castor-codegen:1.3.1'
+	castor 'org.codehaus.castor:castor-xml-schema:1.3.1'
+	castor files(getProject().getProjectDir().getPath() + "castorbuilder.properties")
+}*/
+
+/*buildscript {
+	repositories {
+		flatDir {
+			dirs("c:/cygwin64/home/ADavison/eclipse-workspace/Svcs-Gradle/build/libs/")
+		}
+		//mavenCentral()
+	}
+	dependencies {
+		//classpath group: 'com.proquest', name: 'Svcs-Gradle'
+		classpath files("c:/cygwin64/home/ADavison/eclipse-workspace/Svcs-Gradle/build/libs/CastorExecPlugin-1.0.0.jar")
+		
+		//classpath group: 'commons-io', name: 'commons-io', version: '2.4'
+		//classpath group: 'com.proquest', name: 'CastorExecPlugin', version: '1.0.0'
+		//classpath "com.proquest:CastorExecPlugin:1.0.0"
+		//classpath files("CastorExecPlugin-1.0.0.jar")
+	}
+	
+
+}*/
+
+/*buildscript {
+	repositories {
+		maven {
+			url uri('../repo')
+		}
+		mavenCentral()
+	}
+	dependencies {
+		classpath group: 'com.proquest', name: 'CastorExecPlugin',
+				  version: '1.0.0'
+	}
+}*/
+//apply plugin: 'com.proquest.CastorExecPlugin'
+
+//buildScan { termsOfServiceUrl = 'https://gradle.com/terms-of-service'; termsOfServiceAgree = 'yes' }
+
+
+
+/* Apply via the newer 'plugins' block
+buildscript {
+	repositories {
+		flatDir {
+			dirs("c:/cygwin64/home/ADavison/eclipse-workspace/Svcs-Gradle/build/libs/")
+		}
+		//mavenCentral()
+	}
+	dependencies {
+		//classpath group: 'com.proquest', name: 'Svcs-Gradle'
+		//classpath files("c:/cygwin64/home/ADavison/eclipse-workspace/Svcs-Gradle/build/libs/CastorExecPlugin-1.0.0.jar")
+		//classpath group: 'commons-io', name: 'commons-io', version: '2.4'
+		classpath group: 'com.proquest', name: 'CastorExecPlugin', version: '1.0.0'
+		//classpath files("CastorExecPlugin-1.0.0.jar")
+	}
+	
+
+}
+
+//apply plugin: 'java'
+plugins {
+	id 'java'
+	//id 'com.proquest.castorexecplugin.CastorExecPlugin' version '1.0.0'
+	id 'com.proquest.CastorExecPlugin' version '1.0.0'
+}
+ */
+
+//apply from: project.getProperty('pqBuildServicesDir') + "/codegen-common.gradle"
+
+/*configurations {
+	commonBuildFiles
+}
+
+dependencies {
+	commonBuildFiles files(dir: project.getProperty('pqBuildServicesDir') + '/codegen-common.gradle')
+	
+	//files(project.getProperty('pqBuildServicesDir') + '/codegen-common.gradle')
+	//compile project(":GradleCommon")
+	
+}*/
+
+/*task castorV1Exec(type:Exec) {
+	//commandLine './gradle -PserviceSchemaFile="' + serviceName + '_v' + 1 + '.xsd" -PserviceSchemaPackage="' + servicePackage + '.xml" runCastorLocal'
+	commandLine('cmd','/c/cygwin64/home/ADavison/eclipse-workspace/Svcs-ADavisonTraining','gradle')
+	standardOutput = new ByteArrayOutputStream()
+	ext.output = {
+		return standardOutput.toString()
+	}
+}*/
+
+/*task buildCodegenCommon(type: GradleBuild) {
+	buildFile = project.getProperty('pqBuildServicesDir') + "/codegen-common.gradle"
+	//tasks ['castorV1']
+}*/
+
+/*task castorV1(type:runCastorLocalTask, dependsOn:buildCodegenCommon) {
+	
+		xsdFile = "c:/cygwin64/home/ADavison/eclipse-workspace/Svcs-ADavisonTraining/src/main/resources/ADavisonTraining_v.xsd"
+}*/
+
+//def urls = configurations.commonBuildFiles.files.collect {it.toURI().toURL() } as URL[]
+/*def urls = [new URI('c/cygwin64/home/ADavison/eclipse-workspace/Svcs-Build/codegen-common.gradle')]
+def buildDepsClassLoader = new URLClassLoader(urls)
+println urls
+gradle.scriptClassLoader.addParent(buildDepsClassLoader)*/
+
+//castorV1.dependsOn propertiesPrinter
+//castorV1.finalizedBy runCastorLocal
